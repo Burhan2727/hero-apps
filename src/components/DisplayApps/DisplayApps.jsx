@@ -1,13 +1,17 @@
 import React from "react";
 import downLoadIcon from "../../assets/icon-downloads.png";
 import ratingIcon from "../../assets/icon-ratings.png";
+import { useNavigate } from "react-router";
 const DisplayApps = ({ singleApp }) => {
-  const { companyName, image, title, ratingAvg, downloads } = singleApp;
-  console.log(singleApp);
+  const {id , companyName, image, title, ratingAvg, downloads } = singleApp;
+  const navigate = useNavigate();
+  const handleClickCard = ()=>{
+    navigate(`/apps/${id}`)
+  }
   return (
-    <div className="card bg-base-100 shadow-sm hover:scale-105 transition-all">
+    <div onClick={handleClickCard} className="card bg-base-100 shadow-sm hover:scale-105 transition-all cursor-pointer">
       <figure>
-        <img src={image} alt={companyName} />
+        <img className="h-80 w-full object-cover" src={image} alt={companyName} />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{title}</h2>
