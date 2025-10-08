@@ -59,10 +59,10 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <button className="flex justify-center items-center gap-1 bg-gradient-to-r from-[#632EE3] to-[#9F62F2] p-2 rounded-sm cursor-pointer">
+        <a href="https://github.com/Burhan2727/hero-apps" target="_blank" className="flex justify-center items-center gap-1 bg-gradient-to-r from-[#632EE3] to-[#9F62F2] p-2 rounded-sm cursor-pointer">
           <IoLogoGithub className="bg-white rounded-full" />
           <span className="text-white">Contribute</span>
-        </button>
+        </a>
       </div>
     </div>
   );
