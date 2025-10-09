@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import useApps from "../hooks/useApps";
 import { useParams } from "react-router";
 import downLoadIcon from "../../assets/icon-downloads.png";
 import ratingIcon from "../../assets/icon-ratings.png";
 import reviewsIcon from "../../assets/icon-review.png"
+import { toast } from "react-toastify";
+import { addItemToLocaleStorage, getFromLocaleStorage } from "../../utilities/localeStorage";
 const AppDetails = () => {
+  const [isInstall, setIsInstall] = useState(false)
+  const [getApp, setGetApp] = useState([])
+  
   const { appsData, loading, error } = useApps();
   const paramsId = useParams();
+  useEffect(()=>{
+    const getInstallAppData = getFromLocaleStorage();
+    setGetApp(getInstallAppData)
+    getInstallAppData.forEach(app=>{
+      if(app.id === Number(paramsId.id)){
+        setIsInstall(true)
+      }
+    })
+  }, [paramsId.id])
   const findApp = appsData.find((app) => app.id === Number(paramsId.id));
-  //   if(loading) return <p>Loading....</p>
   if (!findApp) return <p>Loading....</p>;
   const {
     id,
@@ -24,7 +37,12 @@ const AppDetails = () => {
     description
 
   } = findApp;
-  console.log(findApp)
+  const handleInstallBtn = ()=>{
+    addItemToLocaleStorage(findApp)
+    setIsInstall(true)
+    toast("successfully Installed");
+    console.log("clicked")
+  }
   return (
     <div className="md:px-10 lg:px-10 px-3">
         <div className=" bg-[#F5F5F5] shadow-sm my-10 p-2">
@@ -52,7 +70,7 @@ const AppDetails = () => {
                 <p className="font-extrabold md:text-4xl lg:text-4xl">{reviews}k</p>
             </div>
           </div>
-          <button className="btn bg-[#00D390] text-white">Install Now({size}MB)</button>
+          <button disabled={isInstall? true : false} onClick={handleInstallBtn} className="btn bg-[#00D390] text-white font-semibold text-xl">{isInstall ? "Installed" : `Install Now (${size}MB)`}</button>
         </div>
       </div>
     </div>
