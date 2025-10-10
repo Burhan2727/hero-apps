@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import useApps from "../hooks/useApps";
-import { useParams } from "react-router";
 import { getFromLocaleStorage } from "../../utilities/localeStorage";
 import InstallationsDisplay from "../InstallationsDisplay/InstallationsDisplay";
 
@@ -41,6 +39,9 @@ const Installation = () => {
             <option value="downloads-desc">High-&gt;Low</option>
           </select>
         </div>
+      </div>
+      <div className="flex justify-center my-5">
+        {!sortedApps.length && <p className="text-3xl font-medium">No Installed Apps</p>}
       </div>
       <div className="">
         {sortedApps.map((app) => (

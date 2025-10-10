@@ -2,19 +2,15 @@ import React from 'react';
 import downLoadIcon from "../../assets/icon-downloads.png";
 import ratingIcon from "../../assets/icon-ratings.png";
 import { toast } from "react-toastify";
-import { getFromLocaleStorage, removeFromLocaleStorge, saveToLocaleStorage } from '../../utilities/localeStorage';
+import {  removeFromLocaleStorge } from '../../utilities/localeStorage';
 const InstallationsDisplay = ({app, setInsTallApps}) => {
     const {
       id,
-      companyName,
       image,
       title,
       ratingAvg,
       downloads,
-      reviews,
       size,
-      ratings,
-      description,
     } = app;
     const handleUnInstallBtn = (id)=>{
         removeFromLocaleStorge(id);

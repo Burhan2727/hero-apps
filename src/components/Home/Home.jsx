@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import Banner from "../Banner/Banner";
 
 const Home = () => {
-  const { appsData, loading, error } = useApps();
+  const { appsData} = useApps();
   const displayAppsData = appsData.slice(0, 8);
   // console.log(displayAppsData)
   return (

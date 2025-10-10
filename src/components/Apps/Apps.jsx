@@ -5,7 +5,7 @@ import AppsNotFound from "../AppsNotFound/AppsNotFound";
 import Spinner from "../Spinner/Spinner";
 
 const Apps = () => {
-  const { appsData, loading, error } = useApps();
+  const { appsData } = useApps();
   const [inputValue, setInputValue] = useState("");
   const [searchLoading, setSearchLoading] = useState(false);
   const inputValueTrim = inputValue.trim().toLowerCase();

@@ -11,7 +11,7 @@ const AppDetails = () => {
   const [isInstall, setIsInstall] = useState(false)
   const [getApp, setGetApp] = useState([])
   
-  const { appsData, loading, error } = useApps();
+  const { appsData } = useApps();
   const paramsId = useParams();
   useEffect(()=>{
     const getInstallAppData = getFromLocaleStorage();
@@ -25,7 +25,6 @@ const AppDetails = () => {
   const findApp = appsData.find((app) => app.id === Number(paramsId.id));
   if (!findApp) return <p>Loading....</p>;
   const {
-    id,
     companyName,
     image,
     title,
@@ -80,6 +79,7 @@ const AppDetails = () => {
         <div className="bg-base-100 border rounded-xl p-4 h-80">
             <ResponsiveContainer width="100%" height="100%">
             <BarChart data={ratings}>
+
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis />
