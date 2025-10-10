@@ -7,6 +7,7 @@ import ratingIcon from "../../assets/icon-ratings.png";
 import reviewsIcon from "../../assets/icon-review.png"
 import { toast } from "react-toastify";
 import { addItemToLocaleStorage, getFromLocaleStorage } from "../../utilities/localeStorage";
+import NoAppFound from "../NoAppFound/NoAppFound";
 const AppDetails = () => {
   const [isInstall, setIsInstall] = useState(false)
   const [getApp, setGetApp] = useState([])
@@ -23,7 +24,7 @@ const AppDetails = () => {
     })
   }, [paramsId.id])
   const findApp = appsData.find((app) => app.id === Number(paramsId.id));
-  if (!findApp) return <p>Loading....</p>;
+  if (!findApp) return <NoAppFound/>;
   const {
     companyName,
     image,

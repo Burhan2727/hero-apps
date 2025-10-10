@@ -13,7 +13,7 @@ const Root = () => {
         setLoading(true);
         const timer = setTimeout(() => {
             setLoading(false)
-        }, 300);
+        }, 200);
         return ()=> clearTimeout(timer)
     }, [location])
     console.log(location)

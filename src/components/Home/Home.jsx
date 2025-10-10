@@ -11,8 +11,8 @@ const Home = () => {
   return (
     <div>
       <Banner/>
-      <h1 className="font-bold text-5xl text-center my-5">Trending Apps</h1>
-      <p className="text-xl text-[#627382] text-center mb-5">
+      <h1 className="font-bold md:text-5xl lg:text-5xl text-3xl text-center my-5">Trending Apps</h1>
+      <p className="md:text-xl lg:text-xl text-[#627382] text-center mb-5">
         Explore All Trending Apps on the Market developed by us
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-3">

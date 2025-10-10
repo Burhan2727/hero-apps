@@ -24,10 +24,10 @@ const Installation = () => {
   })();
   return (
     <div className="bg-[#F5F5F5] py-20">
-      <h1 className="text-center font-bold text-5xl mb-5">
+      <h1 className="text-center font-bold md:text-5xl lg:text-5xl text-3xl mb-5">
         Your Installed Apps
       </h1>
-      <p className="text-center text-[#627382] text-xl mb-5">
+      <p className="text-center text-[#627382] md:text-xl lg:text-xl mb-5">
         Explore All Trending Apps on the Market developed by us
       </p>
       <div className="flex flex-col md:flex-row lg:flex-row md:items-center lg:items-center justify-between gap-4 px-3">

@@ -26,11 +26,11 @@ const Apps = () => {
       <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold text-[#001931] text-center mb-5">
         Our All Applications
       </h1>
-      <p className="text-[#627382] text-xl text-center mb-5">
+      <p className="text-[#627382] md:text-xl lg:text-xl text-center mb-5">
         Explore All Apps on the Market developed by us. We code for Millions
       </p>
       <div className="flex justify-between items-center p-3">
-        <h1 className="font-semibold text-2xl">
+        <h1 className="font-semibold md:text-2xl lg:text-2xl text-xl">
           ({searchValueData.length}) Apps Found
         </h1>
         <div>
