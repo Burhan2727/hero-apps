@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useApps from "../hooks/useApps";
 import DisplayApps from "../DisplayApps/DisplayApps";
 import AppsNotFound from "../AppsNotFound/AppsNotFound";
+import Spinner from "../Spinner/Spinner";
 
 const Apps = () => {
   const { appsData, loading, error } = useApps();
   const [inputValue, setInputValue] = useState("");
+  const [searchLoading, setSearchLoading] = useState(false)
   const inputValueTrim = inputValue.trim().toLowerCase();
   const searchValueData = inputValueTrim ? appsData.filter(app => app.title.toLowerCase().includes(inputValueTrim)) : appsData;
+  useEffect(()=>{
+    if(inputValue === "") return;
+    setSearchLoading(true);
+    const timer = setTimeout(() => {
+      setSearchLoading(false)
+    }, 300);
+    return ()=> clearTimeout(timer)
+  }, [inputValue])
   if(!searchValueData.length) return <AppsNotFound/>
   return (
     <div>
@@ -37,6 +47,12 @@ const Apps = () => {
           </label>
         </div>
       </div>
+      <div className="flex justify-center items-center">
+          {
+          searchLoading && <Spinner/>
+
+        }
+        </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 p-3">
         {
             searchValueData.map(singleApp => <DisplayApps

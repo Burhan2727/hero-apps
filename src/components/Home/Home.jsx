@@ -2,6 +2,7 @@ import React from "react";
 import useApps from "../hooks/useApps";
 import DisplayApps from "../DisplayApps/DisplayApps";
 import { Link } from "react-router";
+import Banner from "../Banner/Banner";
 
 const Home = () => {
   const { appsData, loading, error } = useApps();
@@ -9,6 +10,7 @@ const Home = () => {
   // console.log(displayAppsData)
   return (
     <div>
+      <Banner/>
       <h1 className="font-bold text-5xl text-center my-5">Trending Apps</h1>
       <p className="text-xl text-[#627382] text-center mb-5">
         Explore All Trending Apps on the Market developed by us

@@ -10,40 +10,46 @@ const Installation = () => {
     const savedInsTallApp = getFromLocaleStorage();
     setInsTallApps(savedInsTallApp);
   }, []);
-  //   const { appsData, loading, error } = useApps();
-  //   const paramsId = useParams();
-  //   const findInstallData = appsData.find(
-  //     (app) => app.id === Number(paramsId.id)
-  //   );
-  //   if (!findInstallData) return <p>Loading...</p>;
-  //   const {
-  //     id,
-  //     companyName,
-  //     image,
-  //     title,
-  //     ratingAvg,
-  //     downloads,
-  //     reviews,
-  //     size,
-  //     ratings,
-  //     description,
-  //   } = findInstallData;
+  const [sortState, setSortState] = useState("none");
+  const sortedApps = (() => {
+    if (sortState === "downloads-asc") {
+      return [...installApps].sort(
+        (a, b) => parseInt(a.downloads) - parseInt(b.downloads)
+      );
+    } else if (sortState === "downloads-desc") {
+      return [...installApps].sort(
+        (a, b) => parseInt(b.downloads) - parseInt(a.downloads)
+      );
+    } else {
+      return installApps;
+    }
+  })();
   return (
     <div className="bg-[#F5F5F5] py-20">
-        <h1 className="text-center font-bold text-5xl mb-5">Your Installed Apps</h1>
-        <p className="text-center text-[#627382] text-xl mb-5">Explore All Trending Apps on the Market developed by us</p>
+      <h1 className="text-center font-bold text-5xl mb-5">
+        Your Installed Apps
+      </h1>
+      <p className="text-center text-[#627382] text-xl mb-5">
+        Explore All Trending Apps on the Market developed by us
+      </p>
+      <div className="flex flex-col md:flex-row lg:flex-row md:items-center lg:items-center justify-between gap-4 px-3">
+        <p className="text-2xl font-semibold">({sortedApps.length}) Apps Found</p>
         <div>
-            <p>1 Apps Found</p>
-            <div>
-                <label>
-                    <select>
-                        <option value="none"></option>
-                    </select>
-                </label>
-            </div>
+          <select value={sortState} className="select" onChange={e => setSortState(e.target.value)}>
+            <option value="none">Sort By Downloads</option>
+            <option value="downloads-asc">Low-&gt;High</option>
+            <option value="downloads-desc">High-&gt;Low</option>
+          </select>
         </div>
+      </div>
       <div className="">
-        {installApps.map(app => <InstallationsDisplay key={app.id} app={app} setInsTallApps={setInsTallApps}/>)}
+        {sortedApps.map((app) => (
+          <InstallationsDisplay
+            key={app.id}
+            app={app}
+            setInsTallApps={setInsTallApps}
+          />
+        ))}
       </div>
     </div>
   );

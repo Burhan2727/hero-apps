@@ -1,6 +1,7 @@
 import React from 'react';
 import downLoadIcon from "../../assets/icon-downloads.png";
 import ratingIcon from "../../assets/icon-ratings.png";
+import { toast } from "react-toastify";
 import { getFromLocaleStorage, removeFromLocaleStorge, saveToLocaleStorage } from '../../utilities/localeStorage';
 const InstallationsDisplay = ({app, setInsTallApps}) => {
     const {
@@ -18,7 +19,7 @@ const InstallationsDisplay = ({app, setInsTallApps}) => {
     const handleUnInstallBtn = (id)=>{
         removeFromLocaleStorge(id);
         setInsTallApps(prev => prev.filter(p => p.id !== id))
-        
+        toast("successfully Uninstalled");
     }
     return (
         <div className=" bg-white shadow-sm my-5 p-3 flex justify-between md:items-center lg:items-center  flex-col md:flex-row lg:flex-row">
